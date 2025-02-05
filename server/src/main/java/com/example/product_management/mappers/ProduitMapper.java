@@ -9,9 +9,9 @@ import com.example.product_management.DTOs.ProduitDTO;
 public interface ProduitMapper {
     ProduitMapper INSTANCE = Mappers.getMapper(ProduitMapper.class);
 
-
+    // Mapper Produit vers ProduitDTO
     ProduitDTO produitToProduitDTO(Produit produit);
 
-
+    // Mapper ProduitDTO vers Produit
     Produit produitDTOToProduit(ProduitDTO produitDTO);
 }

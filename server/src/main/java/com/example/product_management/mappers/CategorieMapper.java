@@ -1,6 +1,7 @@
 package com.example.product_management.mappers;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import com.example.product_management.models.Categorie;
 import com.example.product_management.DTOs.CategorieDTO;

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,8 +25,15 @@ public class CategorieServiceImpl implements CategorieService {
             throw new IllegalArgumentException("Le nom de la catégorie est obligatoire.");
         }
 
+        // Vérification si une catégorie avec le même nom existe déjà
+        Optional<Categorie> existingCategorie = categorieRepository.findByNom(categorieDTO.getNom());
+        if (existingCategorie.isPresent()) {
+            throw new IllegalArgumentException("Une catégorie avec ce nom existe déjà.");
+        }
+
 
         Categorie categorie = CategorieMapper.INSTANCE.categorieDTOToCategorie(categorieDTO);
+
 
 
         Categorie savedCategorie = categorieRepository.save(categorie);
@@ -42,15 +50,22 @@ public class CategorieServiceImpl implements CategorieService {
             throw new IllegalArgumentException("Catégorie non trouvée avec l'ID: " + id);
         }
 
+        // Recharger l'entité à partir de la base de données pour s'assurer qu'elle n'a pas été modifiée
+        Categorie reloadedCategorie = categorieRepository.findById(id).orElse(null);
+        if (reloadedCategorie == null) {
+            throw new IllegalArgumentException("Catégorie non trouvée avec l'ID: " + id);
+        }
 
-        categorie.setNom(categorieDTO.getNom());
+        // Mettre à jour les valeurs de la catégorie avec les données du DTO
+        reloadedCategorie.setNom(categorieDTO.getNom());
 
+        // Sauvegarder les modifications
+        Categorie updatedCategorie = categorieRepository.save(reloadedCategorie);
 
-        Categorie updatedCategorie = categorieRepository.save(categorie);
-
-
+        // Retourner l'entité mise à jour sous forme de DTO
         return CategorieMapper.INSTANCE.categorieToCategorieDTO(updatedCategorie);
     }
+
 
     @Override
     public void deleteCategorie(Long id) {

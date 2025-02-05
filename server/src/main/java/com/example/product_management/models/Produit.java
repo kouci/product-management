@@ -3,6 +3,7 @@ package com.example.product_management.models;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="produit")
 public class Produit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +15,7 @@ public class Produit {
     private Integer quantite;
 
     @ManyToOne
-    @JoinColumn(name = "categorie_id", nullable = false)
+    @JoinColumn(name = "categorie_id",referencedColumnName = "id", nullable = false)
     private Categorie categorie;
 
     // Constructeurs

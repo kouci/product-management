@@ -6,17 +6,23 @@ import lombok.*;
 import java.util.List;
 
 @Entity
+@Table(name="categorie")
 public class Categorie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     private String nom;
 
     @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Produit> produits;
 
-    // Getter et Setter explicites pour id et nom
+
+    public Categorie() {
+    }
+
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -40,4 +46,6 @@ public class Categorie {
     public void setProduits(List<Produit> produits) {
         this.produits = produits;
     }
+
+
 }

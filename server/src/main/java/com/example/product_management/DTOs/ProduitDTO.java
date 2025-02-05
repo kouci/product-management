@@ -1,52 +1,18 @@
 package com.example.product_management.DTOs;
 
 import com.example.product_management.models.Categorie;
-import com.example.product_management.models.Produit;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-
 
 public class ProduitDTO {
     private Long id;
-
-    @NotNull(message = "Le nom du produit est obligatoire")
-    @Size(min = 1, max = 100, message = "Le nom doit être compris entre 1 et 100 caractères")
     private String nom;
     private String description;
-
-    @NotNull(message = "Le prix du produit est obligatoire")
     private Double prix;
     private Integer quantite;
-    private Categorie categorie;
+    private Long categorieId;  // Seulement l'ID de la catégorie
 
-
-    public ProduitDTO() {
-    }
-
-
-    public ProduitDTO(Long id, String nom, String description, Double prix, Integer quantite, Categorie categorie) {
-        this.id = id;
-        this.nom = nom;
-        this.description = description;
-        this.prix = prix;
-        this.quantite = quantite;
-        this.categorie = categorie;
-    }
-
-
-    public ProduitDTO(Produit produit) {
-        this.id = produit.getId();
-        this.nom = produit.getNom();
-        this.description = produit.getDescription();
-        this.prix = produit.getPrix();
-        this.quantite = produit.getQuantite();
-        this.categorie = produit.getCategorie();
-    }
-
-    // Getters et Setters manuels
-
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -87,13 +53,11 @@ public class ProduitDTO {
         this.quantite = quantite;
     }
 
-    public Categorie getCategorie() {
-        return categorie;
+    public Long getCategorieId() {
+        return categorieId;
     }
 
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
+    public void setCategorieId(Long categorieId) {
+        this.categorieId = categorieId;
     }
-
-
 }
