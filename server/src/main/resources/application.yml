@@ -1,7 +1,7 @@
 # Nom de l'application
 spring:
   application:
-    name: product-management
+    name: product-management-server
 
 
   datasource:
