@@ -1,13 +1,17 @@
 package com.example.product_management.DTOs;
 
 import com.example.product_management.models.Categorie;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 
 public class CategorieDTO {
 
     private Long id;
 
+
+    @NotNull(message = "Le nom du produit est obligatoire")
+    @Size(min = 1, max = 100, message = "Le nom doit être compris entre 1 et 100 caractères")
     private String nom;
 
 

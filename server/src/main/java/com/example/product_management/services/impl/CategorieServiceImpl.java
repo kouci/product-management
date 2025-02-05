@@ -4,6 +4,7 @@ import com.example.product_management.DTOs.CategorieDTO;
 import com.example.product_management.models.Categorie;
 import com.example.product_management.repository.CategorieRepository;
 import com.example.product_management.services.CategorieService;
+import com.example.product_management.mappers.CategorieMapper;  // Import du mapper
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,14 +25,13 @@ public class CategorieServiceImpl implements CategorieService {
         }
 
 
-        Categorie categorie = new Categorie();
-        categorie.setNom(categorieDTO.getNom());
+        Categorie categorie = CategorieMapper.INSTANCE.categorieDTOToCategorie(categorieDTO);
 
-        // Sauvegarde de la catégorie dans la base de données
+
         Categorie savedCategorie = categorieRepository.save(categorie);
 
-        // Retourne le DTO de la catégorie sauvegardée
-        return new CategorieDTO(savedCategorie);
+
+        return CategorieMapper.INSTANCE.categorieToCategorieDTO(savedCategorie);
     }
 
     @Override
@@ -46,21 +46,19 @@ public class CategorieServiceImpl implements CategorieService {
         categorie.setNom(categorieDTO.getNom());
 
 
-
         Categorie updatedCategorie = categorieRepository.save(categorie);
 
 
-        return new CategorieDTO(updatedCategorie);
+        return CategorieMapper.INSTANCE.categorieToCategorieDTO(updatedCategorie);
     }
 
     @Override
     public void deleteCategorie(Long id) {
-
         if (!categorieRepository.existsById(id)) {
             throw new IllegalArgumentException("Catégorie non trouvée avec l'ID: " + id);
         }
 
-        // Suppression de la catégorie
+
         categorieRepository.deleteById(id);
     }
 
@@ -69,7 +67,7 @@ public class CategorieServiceImpl implements CategorieService {
 
         return categorieRepository.findAll()
                 .stream()
-                .map(CategorieDTO::new)
+                .map(CategorieMapper.INSTANCE::categorieToCategorieDTO)
                 .collect(Collectors.toList());
     }
 }
