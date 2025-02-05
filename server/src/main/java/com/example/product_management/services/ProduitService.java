@@ -11,6 +11,8 @@ public interface ProduitService {
 
     void deleteProduit(Long id);
 
+    ProduitDTO getProduitById(Long id);
+
     List<ProduitDTO> getAllProduits();
 
     List<ProduitDTO> searchProduits(String nom, String categorieNom, Double prixMin, Double prixMax);

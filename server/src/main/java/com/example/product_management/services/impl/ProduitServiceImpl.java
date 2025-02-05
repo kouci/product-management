@@ -88,7 +88,17 @@ public class ProduitServiceImpl implements ProduitService {
     }
 
     @Override
+    public ProduitDTO getProduitById(Long id) {
+        Produit produit = produitRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produit non trouvé avec l'ID : " + id));
+
+        return ProduitMapper.INSTANCE.produitToProduitDTO(produit);
+    }
+
+    @Override
     public List<ProduitDTO> searchProduits(String nom, String categorieNom, Double prixMin, Double prixMax) {
+        // ajout des logs pour déboguer
+        System.out.println("Recherche produit - nom: " + nom + ", catégorie: " + categorieNom + ", prix min: " + prixMin + ", prix max: " + prixMax);
 
         return produitRepository.searchByCriteria(nom, categorieNom, prixMin, prixMax)
                 .stream()

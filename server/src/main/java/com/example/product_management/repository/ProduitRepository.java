@@ -15,9 +15,13 @@ public interface ProduitRepository extends JpaRepository<Produit, Long> {
     @Query("SELECT p FROM Produit p WHERE "
             + "(LOWER(p.nom) LIKE LOWER(CONCAT('%', :nom, '%')) OR :nom IS NULL) "
             + "AND (LOWER(p.categorie.nom) LIKE LOWER(CONCAT('%', :categorieNom, '%')) OR :categorieNom IS NULL) "
-            + "AND (p.prix BETWEEN :prixMin AND :prixMax OR (:prixMin IS NULL AND :prixMax IS NULL))")
+            + "AND ("
+            + "  (:prixMin IS NULL AND :prixMax IS NULL) OR "
+            + "  (p.prix >= :prixMin AND p.prix <= :prixMax) "
+            + ")")
     List<Produit> searchByCriteria(@Param("nom") String nom,
                                    @Param("categorieNom") String categorieNom,
                                    @Param("prixMin") Double prixMin,
                                    @Param("prixMax") Double prixMax);
+
 }

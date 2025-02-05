@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -45,6 +46,13 @@ public class ProduitController {
         return updatedProduit != null ? ResponseEntity.ok(updatedProduit) : ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/{id}")
+    @Operation(summary = "Récupérer un produit par Id")
+            public ResponseEntity<ProduitDTO> getProduitById(@PathVariable Long id) {
+        ProduitDTO produitDTO = produitService.getProduitById(id);
+        return ResponseEntity.ok(produitDTO);
+    }
+
     @DeleteMapping("/{id}")
     @Operation(summary = "Supprimer un produit",
             responses = {
@@ -68,6 +76,8 @@ public class ProduitController {
         return ResponseEntity.ok(produits);
     }
 
+
+
     @GetMapping("/search")
     @Operation(summary = "Rechercher des produits", description = "Recherche des produits en fonction du nom, de la catégorie et d'une plage de prix.",
             responses = {
@@ -80,7 +90,11 @@ public class ProduitController {
             @RequestParam(required = false) String categorieNom,
             @RequestParam(required = false) Double prixMin,
             @RequestParam(required = false) Double prixMax) {
+
         List<ProduitDTO> produits = produitService.searchProduits(nom, categorieNom, prixMin, prixMax);
-        return ResponseEntity.ok(produits);
+
+        // Si aucun produit trouvé, renvoyer une liste vide
+        return ResponseEntity.ok(produits.isEmpty() ? new ArrayList<>() : produits);
     }
+
 }
