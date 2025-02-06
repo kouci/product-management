@@ -1,4 +1,4 @@
--- V2__Add_date_creation_column_to_produit.sql
+-- V1__Add_date_creation_column_to_produit.sql
 
 -- Ajouter la colonne date_creation à la table produit
 ALTER TABLE produit
