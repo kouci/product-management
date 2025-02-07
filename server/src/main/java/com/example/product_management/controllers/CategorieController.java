@@ -19,6 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/categories")
+@CrossOrigin(origins = "http://localhost:4200")
 @Tag(name = "Catégories", description = "Gestion des catégories de produits")
 public class CategorieController {
 
@@ -83,6 +84,11 @@ public class CategorieController {
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @GetMapping("/{id}")
+    public CategorieDTO getCategorieById(@PathVariable Long id) {
+        return categorieService.getCategorieById(id);
     }
 
     @GetMapping

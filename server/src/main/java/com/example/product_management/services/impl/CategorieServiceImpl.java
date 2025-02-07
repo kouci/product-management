@@ -78,6 +78,14 @@ public class CategorieServiceImpl implements CategorieService {
     }
 
     @Override
+    public CategorieDTO getCategorieById(Long id) {
+        Categorie categorie = categorieRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Categorie non trouvée avec l'ID : " + id));
+
+        return CategorieMapper.INSTANCE.categorieToCategorieDTO(categorie);
+    }
+
+    @Override
     public List<CategorieDTO> getAllCategories() {
 
         return categorieRepository.findAll()
