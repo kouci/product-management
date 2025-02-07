@@ -5,26 +5,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProduitModule } from './modules/produit/produit.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { ProduitService } from './modules/produit/services/produit.service';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from './Shared/components/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ProduitModule,
     RouterModule,
     ButtonModule,
-    CardModule
+    CardModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ProduitService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

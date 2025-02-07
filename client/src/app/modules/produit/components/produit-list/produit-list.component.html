@@ -9,14 +9,12 @@
       routerLink="/produit/ajouter"
     ></button>
   </div>
+
   <h1 class="title text-center mb-4">Liste des Produits</h1>
 
-  <div class="grid justify-content-center gap-3">
-    <div
-      *ngFor="let produit of produits"
-      class="col-12 sm:col-6 md:col-4 lg:col-3"
-    >
-      <p-card class="produit-card">
+  <p-carousel [value]="produits" [numScroll]="3" [numVisible]="3" [circular]="false">
+    <ng-template pTemplate="item" let-produit>
+      <p-card class="produit-card" style="margin-right: 16px;">
         <ng-template pTemplate="header">
           <h3 class="text-center">{{ produit.nom }}</h3>
         </ng-template>
@@ -28,15 +26,15 @@
         </ng-template>
 
         <ng-template pTemplate="footer">
-          <!-- Le bouton PrimeNG -->
           <button
             pButton
             label="Voir Détails"
             icon="pi pi-eye"
             class="p-button-rounded p-button-primary w-full"
+            [routerLink]="['/produit/detail', produit.id]"
           ></button>
         </ng-template>
       </p-card>
-    </div>
-  </div>
+    </ng-template>
+  </p-carousel>
 </div>

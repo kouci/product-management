@@ -1,1 +1,49 @@
-<p>produit-detail works!</p>
+<div>
+  <div class="text-left mb-4">
+    <button
+      pButton
+      label="Retour"
+      icon="pi pi-arrow-left"
+      class="p-button-rounded p-button-link"
+      routerLink="/produit"
+    ></button>
+  </div>
+
+  <div class="produit-detail-container">
+    <div class="produit-detail-card p-shadow-2">
+      <div class="produit-detail-header" *ngIf="produit">
+        <h2 class="produit-title text-center">{{ produit.nom }}</h2>
+        <div class="produit-price text-center">
+          <span class="p-text-bold">{{ produit.prix | currency : 'EUR' }}</span>
+        </div>
+      </div>
+
+      <div class="produit-content">
+        <div class="produit-info">
+          <div class="produit-description">
+            <h4>Description</h4>
+            <p>{{ produit?.description }}</p>
+          </div>
+
+          <div class="produit-specs">
+            <h4>Spécifications</h4>
+            <ul>
+              <li>
+                <strong>Quantité disponible:</strong> {{ produit?.quantite }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="produit-action text-center">
+            <button
+              pButton
+              label="Ajouter au Panier"
+              icon="pi pi-cart-plus"
+              class="p-button-rounded p-button-primary"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

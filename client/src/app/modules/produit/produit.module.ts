@@ -13,13 +13,15 @@ import { InputTextModule } from 'primeng/inputtext';
 
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
+import { ProduitService } from './services/produit.service';
+import { CarouselModule } from 'primeng/carousel';
 
 @NgModule({
   declarations: [
     ProduitListComponent,
     ProduitDetailComponent,
     ProduitFormComponent,
-    ProduitSearchComponent
+    ProduitSearchComponent,
   ],
   imports: [
     CommonModule,
@@ -29,12 +31,10 @@ import { ButtonModule } from 'primeng/button';
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    CarouselModule,
   ],
-  exports: [
-    ProduitListComponent,
-    ProduitFormComponent,
-    ProduitDetailComponent
-  ]
+  providers: [ProduitService],
+  exports: [ProduitListComponent, ProduitFormComponent, ProduitDetailComponent],
 })
-export class ProduitModule { }
+export class ProduitModule {}

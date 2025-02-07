@@ -1,16 +1,14 @@
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 2rem;
-  min-height: 100vh;
-   width: 1000px;
+  margin-bottom: 200px;
+  width: 1000px;
   margin: 0 auto; /* Centre horizontalement */
 }
 
 /* Formulaire centré et bien structuré */
 .form-wrapper {
   width: 100%;
+  margin-bottom: 120px;
   padding: 2rem;
   border-radius: 8px;
 }
@@ -46,7 +44,6 @@
   font-family: monospace;
 }
 
-
 /* Responsive : Ajustement pour les écrans plus petits */
 @media (max-width: 1280px) {
   .container {
@@ -60,4 +57,3 @@
     padding: 1rem;
   }
 }
-

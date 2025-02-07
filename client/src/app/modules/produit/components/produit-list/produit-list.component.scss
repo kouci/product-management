@@ -3,6 +3,7 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   background-color: white;
+
 }
 
 .produit-card:hover {
@@ -22,11 +23,15 @@ button.p-button {
 
 /* Style pour le titre */
 .title {
-  font-size: 1.25rem; 
+  font-size: 1.25rem;
   font-weight: 500;
   color: #333;
   text-transform: none;
   margin-bottom: 16px;
   line-height: 1.4;
   font-family: monospace;
+}
+
+.p-carousel .p-carousel-items {
+  gap: 16px;  // Espacement uniforme entre les cartes
 }
