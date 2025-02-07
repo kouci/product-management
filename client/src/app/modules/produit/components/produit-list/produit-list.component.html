@@ -1,1 +1,42 @@
-<p>produit-list works!</p>
+<div>
+  <!-- Bouton Ajouter produit -->
+  <div class="text-right mb-4">
+    <button
+      pButton
+      label="Ajouter un Produit"
+      icon="pi pi-plus"
+      severity="secondary"
+      routerLink="/produit/ajouter"
+    ></button>
+  </div>
+  <h1 class="title text-center mb-4">Liste des Produits</h1>
+
+  <div class="grid justify-content-center gap-3">
+    <div
+      *ngFor="let produit of produits"
+      class="col-12 sm:col-6 md:col-4 lg:col-3"
+    >
+      <p-card class="produit-card">
+        <ng-template pTemplate="header">
+          <h3 class="text-center">{{ produit.nom }}</h3>
+        </ng-template>
+
+        <ng-template pTemplate="content">
+          <p class="description">{{ produit.description }}</p>
+          <p><strong>Prix :</strong> {{ produit.prix | currency : "EUR" }}</p>
+          <p><strong>Quantité :</strong> {{ produit.quantite }}</p>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+          <!-- Le bouton PrimeNG -->
+          <button
+            pButton
+            label="Voir Détails"
+            icon="pi pi-eye"
+            class="p-button-rounded p-button-primary w-full"
+          ></button>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>

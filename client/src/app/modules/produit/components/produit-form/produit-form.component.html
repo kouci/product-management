@@ -1,1 +1,82 @@
-<p>produit-form works!</p>
+<div class="container">
+  <div class="form-wrapper">
+    <h1 class="title text-center">Ajouter un Produit</h1>
+    <form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid p-formgrid p-grid">
+        <!-- Nom du produit -->
+        <div class="p-field p-col-12 p-md-6">
+          <label for="nom">Nom</label>
+          <input id="nom" type="text" pInputText formControlName="nom" />
+          <div
+            *ngIf="produitForm.get('nom')?.invalid && produitForm.get('nom')?.touched"
+            class="p-error"
+          >
+            Le nom du produit est requis.
+          </div>
+        </div>
+
+        <!-- Description du produit -->
+        <div class="p-field p-col-12 p-md-6">
+          <label for="description">Description</label>
+          <input id="description" type="text" pInputText formControlName="description" />
+          <div
+            *ngIf="produitForm.get('description')?.invalid && produitForm.get('description')?.touched"
+            class="p-error"
+          >
+            La description du produit est requise.
+          </div>
+        </div>
+
+        <!-- Prix du produit -->
+        <div class="p-field p-col-12 p-md-6">
+          <label for="prix">Prix</label>
+          <input id="prix" type="number" pInputText formControlName="prix" />
+          <div
+            *ngIf="produitForm.get('prix')?.invalid && produitForm.get('prix')?.touched"
+            class="p-error"
+          >
+            Le prix est requis et doit être un nombre positif.
+          </div>
+        </div>
+
+        <!-- Quantité du produit -->
+        <div class="p-field p-col-12 p-md-6">
+          <label for="quantite">Quantité</label>
+          <input id="quantite" type="number" pInputText formControlName="quantite" />
+          <div
+            *ngIf="produitForm.get('quantite')?.invalid && produitForm.get('quantite')?.touched"
+            class="p-error"
+          >
+            La quantité est requise et doit être un nombre entier positif.
+          </div>
+        </div>
+
+        <!-- Sélection de la catégorie -->
+        <div class="p-field p-col-12 p-md-6">
+          <label for="categorie">Catégorie</label>
+          <p-dropdown
+            id="categorie"
+            [options]="categories"
+            formControlName="categorie"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Sélectionnez une catégorie"
+            [filter]="true"
+          ></p-dropdown>
+
+          <div
+            *ngIf="produitForm.get('categorie')?.invalid && produitForm.get('categorie')?.touched"
+            class="p-error"
+          >
+            La catégorie est requise.
+          </div>
+        </div>
+
+        <!-- Bouton de soumission -->
+        <div class="p-col-12 text-center">
+          <button pButton type="submit" label="Ajouter le produit" [disabled]="produitForm.invalid"></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

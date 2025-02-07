@@ -1,0 +1,32 @@
+.produit-card {
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background-color: white;
+}
+
+.produit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.description {
+  color: #555;
+  font-size: 14px;
+  min-height: 50px;
+}
+
+button.p-button {
+  margin-top: 10px;
+}
+
+/* Style pour le titre */
+.title {
+  font-size: 1.25rem; 
+  font-weight: 500;
+  color: #333;
+  text-transform: none;
+  margin-bottom: 16px;
+  line-height: 1.4;
+  font-family: monospace;
+}
