@@ -12,29 +12,36 @@
 
   <h1 class="title text-center mb-4">Liste des Produits</h1>
 
-  <p-carousel [value]="produits" [numScroll]="3" [numVisible]="3" [circular]="false">
-    <ng-template pTemplate="item" let-produit>
-      <p-card class="produit-card" style="margin-right: 16px;">
-        <ng-template pTemplate="header">
-          <h3 class="text-center">{{ produit.nom }}</h3>
-        </ng-template>
+  <!-- Tableau des produits -->
+  <p-table #dt [value]="produits" [paginator]="true" [rows]="10" [responsiveLayout]="'scroll'">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="nom">Nom <p-sortIcon field="nom"></p-sortIcon></th>
+        <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+        <th pSortableColumn="prix">Prix <p-sortIcon field="prix"></p-sortIcon></th>
+        <th pSortableColumn="quantite">Quantité <p-sortIcon field="quantite"></p-sortIcon></th>
+        <th pSortableColumn="nomCategorie">Catégorie <p-sortIcon field="nomCategorie"></p-sortIcon></th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
 
-        <ng-template pTemplate="content">
-          <p class="description">{{ produit.description }}</p>
-          <p><strong>Prix :</strong> {{ produit.prix | currency : "EUR" }}</p>
-          <p><strong>Quantité :</strong> {{ produit.quantite }}</p>
-        </ng-template>
-
-        <ng-template pTemplate="footer">
+    <ng-template pTemplate="body" let-produit>
+      <tr>
+        <td>{{ produit.nom }}</td>
+        <td>{{ produit.description }}</td>
+        <td>{{ produit.prix | currency : "EUR" }}</td>
+        <td>{{ produit.quantite }}</td>
+        <td>{{ produit.categorieNom || 'Chargement...' }}</td>
+        <td>
           <button
             pButton
-            label="Voir Détails"
+            label="Voir"
             icon="pi pi-eye"
-            class="p-button-rounded p-button-primary w-full"
+            class="p-button-rounded p-button-text p-button-primary"
             [routerLink]="['/produit/detail', produit.id]"
           ></button>
-        </ng-template>
-      </p-card>
+        </td>
+      </tr>
     </ng-template>
-  </p-carousel>
+  </p-table>
 </div>

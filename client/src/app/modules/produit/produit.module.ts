@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 
 import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
 
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -33,6 +34,7 @@ import { CarouselModule } from 'primeng/carousel';
     InputTextModule,
     DropdownModule,
     CarouselModule,
+    TableModule,
   ],
   providers: [ProduitService],
   exports: [ProduitListComponent, ProduitFormComponent, ProduitDetailComponent],
