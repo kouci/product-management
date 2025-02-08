@@ -80,12 +80,14 @@ public class ProduitServiceImpl implements ProduitService {
 
     @Override
     public List<ProduitDTO> getAllProduits() {
-
-        return produitRepository.findAll()
-                .stream()
-                .map(ProduitMapper.INSTANCE::produitToProduitDTO)
+        return produitRepository.findAll().stream()
+                .map(produit -> {
+                    ProduitDTO produitDTO = ProduitMapper.INSTANCE.produitToProduitDTO(produit);
+                    return produitDTO;
+                })
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public ProduitDTO getProduitById(Long id) {
