@@ -1,3 +1,15 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/produits_db
+# Configuration de Prometheus
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    web:
+      path: /actuator/prometheus
