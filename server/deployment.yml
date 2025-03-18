@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: product-management
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: product-management
+  template:
+    metadata:
+      labels:
+        app: product-management
+    spec:
+      containers:
+        - name: product-management
+          image: kouci/product-management
+          ports:
+            - containerPort: 8080
